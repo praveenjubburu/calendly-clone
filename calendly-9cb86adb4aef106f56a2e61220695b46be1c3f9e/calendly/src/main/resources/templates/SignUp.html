@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html >
+    <head>
+        <title>Calendly</title>
+        <style>
+            body{
+    margin-left: 250px;
+    width: 1580px;
+    height: 960px;
+    overflow: scroll;
+}
+header>a{
+    font-size: 30px;
+    color:dodgerblue;
+    text-decoration: none;
+    padding-top:0px;
+}
+header{
+    margin-top: 20px;
+    position:fixed;
+    height:100px;
+    margin-top:-160px;
+    background-color: white;
+    width: 1300px;
+    display: flex;
+    justify-content: space-between;
+}
+#headernavBar{
+    width:600px;
+    display: flex;
+    justify-content: space-between;
+    text-decoration: none;
+}
+#headernavBar>div{
+    padding-top: 50px;
+}
+.head-nav{
+    font-weight: bold;
+    color: black;
+    text-decoration: none;
+}
+.head-nav:hover{
+    color: dodgerblue;
+}
+#headerLogIn{
+      width: 160px;
+      display: flex;
+      justify-content: space-between;
+}
+#headerLogIn>div{
+    padding-top:50px;
+}
+.headerLogIn{
+    font-weight: bold;
+    color: black;
+    padding-top:5px;
+    text-decoration: none;
+}
+.headerLogIn:hover{
+    color: dodgerblue;
+}
+#getStarted{
+    width: 100px;
+    height: 40px;
+    margin-top:40px;
+    background-color:dodgerblue;
+    text-align: center;
+    border-radius: 5px;
+    text-decoration: none;
+}
+#getStarted>p{
+    margin-top: 8px;
+    color: white;
+}
+.headNavHidden{
+    font-weight:bold;
+    font-size: 15px;
+    text-decoration: none;
+    color: black;
+}
+.headNavHidden:hover{
+    color: dodgerblue;
+}
+#headNavHidden>div{
+    margin-top: 20px;
+    padding-left:20px;
+}
+#headNavHidden
+{
+    margin-top: 20px;
+    margin-left:-70px;
+    width: 200px;
+    height: 300px;
+    position: absolute;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow:2px 2px 10px grey;
+    display:none;
+}
+#solutionHidden:hover #headNavHidden{
+    display: block;
+}
+.brand{
+    width: 210px;
+    height:60px;
+    margin-left:30px;
+}
+        </style>
+    </head>
+    <body>
+        <header>
+            <a href="SignUp.html" style="font-weight: bold;"> <img style="width:30px;padding-top:30px;font-family: sans-serif;"src="https://assets.calendly.com/assets/frontend/media/logo-square-cd364a3c33976d32792a.png">Calendly</a>
+            <div id="headernavBar">
+            <div><a class="head-nav"href="">Product</a></div>
+            <div id="solutionHidden"><a class="head-nav"href="">Solutions</a>
+                <div id="headNavHidden">
+                   <div><a class="headNavHidden"href="">Sales</a></div>
+                   <div><a class="headNavHidden"href="">Marketing</a></div>
+                   <div><a class="headNavHidden"href="">Customer Success</a></div>
+                   <div><a class="headNavHidden"href="">Recruting</a></div>
+                   <div><a class="headNavHidden"href="">Revenue Operations</a></div>
+                   <div><a class="headNavHidden"href="">Education</a></div>
+                   <div><a class="headNavHidden"href="">Information Technology</a></div> 
+                   </div>   
+            </div>
+            <div><a class="head-nav"href="">Teams & Companies</a></div>
+            <div><a class="head-nav"href="">Pricing</a></div>
+            <div><a class="head-nav"href="">Resources</a>
+                     
+            </div>
+            </div>
+            <div id="headerLogIn">
+
+            <div><a class="headerLogIn"href="/google">Log In</a></div>
+            <a id="getStarted" th:href="@{/oauth2/authorization/google}"><p>Get Started</p></a>
+            </div>
+        </header>
+
+
+        <div style="margin-top:150px; width: 600px;" >
+                 <p style="font-size: 60px;font-weight:bold;width: 390px;font-family: sans-serif;">Easy scheduling 
+                 <p style="color:dodgerblue;margin-top:-50px;font-size: 60px;font-weight: bold;font-family: sans-serif;">ahead</p></p>
+                 <p style="width: 350px;opacity:70%;;letter-spacing: 1px;word-spacing:5px;font-size: 20px;font-family: sans-serif;">
+                    Calendly is your scheduling automation platform for eliminating the back-and-forth emails for finding the perfect time — and so much more.</p>
+                 <form style="margin-top:100px;" th:action="@{/oauth2/authorization/google}">
+                    <input style="width:280px;height:40px;font-size:20px"type="text" required placeholder="Enter your Email">
+                    <input  style="margin-left:20px;width:80px;height:45px;background-color:dodgerblue;border: none;
+                    border-radius:5px;color:white;font-weight:bold;font-size:14px;" type="submit" value="Sign up">
+                 </form>
+        </div>
+        <div style="margin-left: 700px;margin-top: -500px;">
+            <img style="width:600px;" src="https://images.ctfassets.net/k0lk9kiuza3o/46W8NE43rD54MveL20rPp5/e18c62fb5617db69691c4ec475005c06/Homepage-Hero-new.png?w=1366&h=1132&q=85&fm=webp">
+        </div>
+
+        <p style="font-size: 40px;margin-left: 150px;font-weight: bold;font-family: sans-serif;margin-top:80px;text-align: center;width:1000px;">Simplified scheduling for more than <span style="color: dodgerblue;">10,000,000</span> users worldwide</p>
+         <marquee style="margin-top:80px;margin-right:300px;" scrollamount="13">
+            <img class="brand" src="//images.ctfassets.net/k0lk9kiuza3o/4ILKtyUxeFLLrcKYTDJCDI/500c6c102fba1f345571d7282f5bd409/Loreal.svg">
+            <img class="brand"src="//images.ctfassets.net/k0lk9kiuza3o/159BPqM4XNCv8amyRALD0k/f93f2bdb03b97c0a7a4418208da3c508/Vector_copy_2.png">
+            <img class="brand"src="//images.ctfassets.net/k0lk9kiuza3o/bOnLOncEyDdb8izczJggp/0835570c9693c23131f1e036b0950a80/Dropbox_logo_2017__1_.svg">
+            <img class="brand"src="//images.ctfassets.net/k0lk9kiuza3o/cRvfEION30vcgqmypQgia/446c910079940834ba0c7e1f517b15ae/Bitly-V2.svg">
+            <img class="brand"src="//images.ctfassets.net/k0lk9kiuza3o/6ijOBKg2TK8bv06ue2lKQR/370fcc82cb8b05b66bde06bb7e892394/G2_Crowd_logo_1__Traced_.svg">
+            <img class="brand"src="//images.ctfassets.net/k0lk9kiuza3o/56cjEhKMIFlRPdVUSQqMYD/e576716034690751c9781af8f41a5b3b/EBay_logo.svg">
+            <img class="brand"src="//images.ctfassets.net/k0lk9kiuza3o/6fo1ntHspDIwlAN45IgxRU/8a88fd5d7b8e91bf7ca03f1ee8a44ca2/Vector__2_.svg">
+            <img class="brand"src="//images.ctfassets.net/k0lk9kiuza3o/Y595RQBDR1fW5blQZfd9l/f34b8ee5d40aa13af7b0fb015e86e8d3/Vector__19_.svg">
+            <img class="brand"src="//images.ctfassets.net/k0lk9kiuza3o/6PFPRWMRMxRXthyXYcDRiR/6f26aaf48346fb5dfa8318bb4a403e02/Compass__2_.svg">
+            <img class="brand"src="//images.ctfassets.net/k0lk9kiuza3o/159BPqM4XNCv8amyRALD0k/f93f2bdb03b97c0a7a4418208da3c508/Vector_copy_2.png">
+    </marquee>
+    </body>
+</html>

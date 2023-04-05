@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <style>
+#headNav{
+    padding-top: 40px;
+}
+.headNav{
+    text-decoration: none;
+    color: black;
+}
+#homeHidden{
+    position:absolute;
+    background-color: white;
+    box-shadow: 0px 2px 10px gray;
+    width: 140px;
+    display: none;
+    height: 140px;
+    margin-top:20px;
+    margin-left:-40px;
+    border-radius: 10px;
+}
+#viewHidden{
+    height:60px;
+}
+#homeHidden>div{
+    margin-top: 15px;
+}
+.homeHidden:hover{
+    color: dodgerblue;
+}
+.homeHidden{
+    margin-left: 10px;
+    text-decoration: none;
+    color: black;
+    opacity: 70%;
+}
+#viewHidden:hover #homeHidden{
+    display: block;
+}
+.userHidden:hover{
+color: dodgerblue;
+opacity: 70%;
+}
+.userHidden{
+    text-decoration: none;
+    opacity: 70%;
+    color:black;
+    padding-left: 15px;
+}
+#userHidden>div{
+    margin-top: 17px;
+}
+#userHidden{
+    position: absolute;
+    background-color: white;
+    box-shadow: 0px 2px 10px gray;
+    display: none;
+    width:200px;
+    height: 310px;
+    margin-top: 20px;
+    margin-left: -70px;
+    border-radius: 10px;
+}
+#ViewUserHidden:hover #userHidden{
+    display: block;
+}
+.bodyNav{
+    text-decoration: none;
+    color:black;
+    font-weight: bold;
+    opacity: 50%;
+}
+.bodyNav:hover{
+    color: dodgerblue;
+    opacity: 100%;
+}
+#nav>div{
+    height:60px;
+}
+#dateRange:hover #dateRangeHidden{
+    display: block;
+}
+#dateRangeHidden{
+    position: absolute;
+    margin-left: -90px;
+    width: 350px;
+    height: 400px;
+    margin-top: 16px;
+    display: none;
+}
+#content{
+    border-top: 1px solid gray ;
+    box-shadow: 0px 2px 10px gray;
+    width: 1000px;
+    height: 400px;
+    margin-left: 400px;
+    margin-top: 120px;
+    border-radius: 10px;
+}
+  </style>
+</head>
+<body>
+    <header  style="border-bottom: 1px solid gray;">
+        <div style="display: flex;justify-content: space-between;margin-left: 400px;width:1000px;background-color: white;">
+            <div style="padding-top:10px;"><img style="width:40px" src="https://assets.calendly.com/assets/frontend/media/logo-square-cd364a3c33976d32792a.png"></div>
+            <div id="headNav"style="display: flex;justify-content: space-between;width:400px;">
+                <div><a style="font-weight: bold;"class="headNav" href="/dashboard">Home</a></div>
+                <div><a class="headNav"th:href="@{/schedule}">Availability</a></div>
+                <div><a class="headNav"href="">Integrations</a></div>
+                <div id="viewHidden"><a>Help</a>
+                    <div id="homeHidden" >
+                        <div><a class="homeHidden"href="">Get started</a></div>
+                        <div><a class="homeHidden"href="">Help center</a></div>
+                        <div><a class="homeHidden"href="">Chat with us</a></div>
+                        <div><a class="homeHidden"href="">Give feedback</a></div>
+                    </div>
+                </div>
+                <div id="ViewUserHidden"><a>User</a>
+                    <div id="userHidden">
+                        <div style="padding-top:5px;"><a class="userHidden" href="">Account Settings</a></div>
+                        <div><a class="userHidden" href="">Billing</a></div>
+                        <div><a class="userHidden" href="">Calendar Connections</a></div>
+                        <div><a class="userHidden" href="/organization">Admin Management</a></div>
+                        <div><a class="userHidden" href="">Organization Settings</a></div>
+                        <div><a class="userHidden" href="">Share your Link</a></div>
+                        <div><a class="userHidden" href="">Apps</a></div>
+                        <div style="border-top: 1px solid gray;padding-top:10px;"><a class="userHidden" th:href="@{/logout}">Log Out</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+<div style="font-weight:bold;font-size:25px;margin-top:20px;height:70px;border-bottom:1px solid gray"><p style="font-weight:bold;font-size:25px;margin-top:20px;margin-left:400px">Account Settings</p></div>
+    <form style="margin-left:700px;margin-top:100px"  th:action="@{/saveAccountSettings}" th:object="${userInfo}">
+        <input type="hidden" th:value="${userId}" name="userId">
+        <input style="margin-left:300px;width:270px;font-size:20px;border:none" type="file" id="imageInput">
+        <div style="margin-top:-80px;"id="imagePreviewContainer"></div>
+        <script>
+  var imageInput = document.getElementById("imageInput");
+  var imagePreviewContainer = document.getElementById("imagePreviewContainer");
+
+  // When a file is selected, display a preview of the image
+  imageInput.addEventListener("change", function() {
+    var file = imageInput.files[0];
+    if (file) {
+      var reader = new FileReader();
+      reader.addEventListener("load", function() {
+        // Create an <img> tag to display the image
+        var imagePreview = document.createElement("img");
+        imagePreview.src = reader.result;
+        imagePreview.alt = "Image Preview";
+        imagePreview.width = 200;
+
+        // Remove any previously displayed image previews
+        while (imagePreviewContainer.firstChild) {
+          imagePreviewContainer.removeChild(imagePreviewContainer.firstChild);
+        }
+
+        // Append the new image preview to the container
+        imagePreviewContainer.appendChild(imagePreview);
+      });
+      reader.readAsDataURL(file);
+    } else {
+      // If no file is selected, remove any previously displayed image previews
+      while (imagePreviewContainer.firstChild) {
+        imagePreviewContainer.removeChild(imagePreviewContainer.firstChild);
+      }
+    }
+  });
+</script>
+        <h3 style="margin-top:80px">Name :</h3>
+        <input style="width:350px;height:30px" name="name" type="text" th:field="*{name}">
+        <h3 style="margin-top:50px">Welcome Message :</h3>
+            <textarea style="width:350px;height:100px" type="text" name="message" th:field="*{message}"></textarea></br>
+        <select style="width:360px;height:35px;background-color:white;margin-top:35px" name="country" th:field="*{country}">
+            <option value="">Select a country</option>
+            <option value="united-states">United States</option>
+            <option value="china">China</option>
+            <option value="japan">Japan</option>
+            <option value="germany">Germany</option>
+            <option value="united-kingdom">United Kingdom</option>
+            <option value="india">India</option>
+            <option value="france">France</option>
+            <option value="italy">Italy</option>
+            <option value="brazil">Brazil</option>
+            <option value="canada">Canada</option>
+            <option value="south-korea">South Korea</option>
+            <option value="australia">Australia</option>
+            <option value="russia">Russia</option>
+            <option value="spain">Spain</option>
+            <option value="mexico">Mexico</option>
+        </select></br>
+        <p style="margin-top:40px" id="time"></p>
+        <select id="timezone" style="width:360px;height:35px;background-color:white;margin-top:10px" name="timezone"  th:field="*{timeZone}">
+            <option value="">Select a time zone</option>
+            <option value="America/New_York">(GMT-05:00) Eastern Time (US & Canada)</option>
+            <option value="America/Chicago">(GMT-06:00) Central Time (US & Canada)</option>
+            <option value="America/Denver">(GMT-07:00) Mountain Time (US & Canada)</option>
+            <option value="America/Los_Angeles">(GMT-08:00) Pacific Time (US & Canada)</option>
+            <option value="Europe/London">(GMT+00:00) London, United Kingdom</option>
+            <option value="Europe/Paris">(GMT+01:00) Paris, France</option>
+            <option value="Asia/Tokyo">(GMT+09:00) Tokyo, Japan</option>
+            <option value="Australia/Sydney">(GMT+11:00) Sydney, Australia</option>
+            <option value="Asia/Kolkata">(GMT+05:30) Kolkata, India</option>
+        </select>
+        <script>
+  function updateTime() {
+    var timezone = document.getElementById("timezone").value;
+    if (timezone != "") {
+      var date = new Date();
+      var options = { timeZone: timezone, hour12: false, hour: "numeric", minute: "numeric", second: "numeric" };
+      var time = date.toLocaleTimeString([], options);
+      document.getElementById("time").textContent = "Current time: " + time;
+    } else {
+      document.getElementById("time").textContent = "";
+    }
+  }
+  document.addEventListener("DOMContentLoaded", updateTime);
+  document.getElementById("timezone").addEventListener("change", updateTime);
+</script>
+</br>
+          <input style="background-color:dodgerblue;color:white;width:100px;height:40px;margin-top:40px;border:none;border-radius:30px" type="submit" value="Save Changes">
+          <div style="margin-left:650px;margin-top:-40px;width:140px;height:40px;background-color:lightcoral;border-radius:30px">
+              <a th:href="@{/deleteUser/{userId}(userId=${userId})}" style="text-decoration:none;color:white"><p style="margin-top:20px;margin-left:10px;color:white">Delete Account</p></a></div>
+    </form>
+</body>
+</html>

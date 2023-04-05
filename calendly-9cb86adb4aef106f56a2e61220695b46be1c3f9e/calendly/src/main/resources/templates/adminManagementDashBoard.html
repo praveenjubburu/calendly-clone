@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security/">
+<head>
+    <title>Calendly</title>
+    <link  rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <style>
+        header{
+    margin-left:400px;
+}
+#headNav{
+    padding-top: 40px;
+}
+.headNav{
+    text-decoration: none;
+    color: black;
+}
+#homeHidden{
+    position:absolute;
+    background-color: white;
+    width: 140px;
+    display: none;
+    height: 140px;
+    margin-top:20px;
+    margin-left:-40px;
+    box-shadow: 2px 2px 10px gray;
+    border-radius: 10px;
+}
+#viewHidden{
+    height:60px;
+}
+#homeHidden>div{
+    margin-top: 15px;
+}
+.homeHidden:hover{
+    color: dodgerblue;
+}
+.homeHidden{
+    margin-left: 10px;
+    text-decoration: none;
+    color: black;
+    opacity: 70%;
+}
+#viewHidden:hover #homeHidden{
+    display: block;
+}
+.userHidden:hover{
+color: dodgerblue;
+opacity: 70%;
+}
+.userHidden{
+    text-decoration: none;
+    opacity: 70%;
+    color:black;
+    padding-left: 15px;
+}
+#userHidden>div{
+    margin-top: 17px;
+}
+#userHidden{
+    position: absolute;
+    background-color: white;
+    display: none;
+    width:200px;
+    height: 310px;
+    margin-top: 20px;
+    margin-left: -70px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 10px gray;
+}
+#ViewUserHidden:hover #userHidden{
+    display: block;
+}
+.bodyNav{
+    text-decoration: none;
+    color:black;
+    font-weight: bold;
+    opacity: 50%;
+}
+.bodyNav:hover{
+    color: dodgerblue;
+    opacity: 100%;
+}
+#nav>div{
+    height:60px;
+}
+.events{
+background:tan;
+}
+        .event-container{
+          margin-top:50px;
+          width:980px;
+          margin-left:auto;
+          margin-right:auto;
+          display:grid;
+          grid-template-columns:auto auto auto;
+
+          }
+          .event:hover{
+            transform:scale(1.01,1.01);
+            }
+          .event{
+          display:flex;
+         flex-direction:column;
+          justify-content:space-between;
+          border-radius:5px;
+          box-shadow:0px 1px 2px gray;
+          width:308px;
+          height:250px;
+          margin:5px;
+          padding:12px;
+          }
+          .event-nav-bar{
+            display:flex;
+            justify-content:space-between;
+            }
+          .event-body{
+             display:flex;
+             flex-direction:column;
+             justify-content:space-evenly;
+          }
+          .event-footer{
+            display:flex;
+            border-top:0.5px solid black;
+            padding:10px;
+            justify-content:space-between;
+            }
+            .search-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+input[type=text] {
+  padding: 10px;
+  border: 1px solid grey;
+  border-radius: 4px;
+  margin-right: 10px;
+  width: 50%;
+}
+
+button[type=submit] {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            text-align: left;
+            padding: 8px;
+            border-bottom: 1px solid #ddd;
+        }
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        input[type="checkbox"] {
+            margin-right: 5px;
+        }
+        button[type="submit"] {
+            margin-top: 10px;
+            padding: 8px 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button[type="submit"]:hover {
+            background-color: #3e8e41;
+        }
+        form {
+  display: inline-block;
+  margin: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 5px;
+}
+
+label {
+  font-weight: bold;
+  margin-right: 5px;
+}
+
+input[type="text"] {
+  padding: 5px;
+  border: none;
+  width: 200px;
+  box-shadow: inset 0 1px 1px rgba(0,0,0,0.1);
+  border-radius: 3px;
+  font-size: 16px;
+}
+
+input[type="submit"] {
+  background-color: #007bff;
+  color: #fff;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 3px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover {
+  background-color: #0062cc;
+}
+.options {
+  position: relative;
+  display: inline-block;
+}
+
+.menu {
+  position: absolute;
+  top: 25px;
+  right: 0;
+  width: 120px;
+  background-color: #fff;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  padding: 5px 0;
+  text-align: center;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.5s ease-in-out;
+}
+
+.menu a {
+  display: block;
+  padding: 8px 16px;
+  text-decoration: none;
+  color: #333;
+}
+
+.options:hover .menu {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Change color of icon to black */
+.options i {
+  color: #000;
+}
+
+    </style>
+    <script>
+$(document).ready(function() {
+    $('.menu a').on('click', function(e) {
+        e.preventDefault(); // prevent default link behavior
+        // show the confirmation pop-up here
+        if (confirm('Are you sure you want to perform this action?')) {
+            // execute the task here
+            window.location.href = $(this).attr('href'); // go to the link URL
+        }
+    });
+});
+</script>
+
+</head>
+<body>
+<header>
+    <div style="display: flex;justify-content: space-between;width:1000px;background-color: white;">
+        <div style="padding-top:10px;"><a href="/dashboard"><img style="width:40px" src="https://assets.calendly.com/assets/frontend/media/logo-square-cd364a3c33976d32792a.png"></a>div>
+
+
+        <div id="headNav"style="display: flex;justify-content: space-between;width:400px;">
+            <div><a style="font-weight: bold;"class="headNav"   th:href="@{/dashboard}">Home</a></div>
+            <div><a class="headNav"th:href="@{/schedule}">Availability</a></div>
+            <div><a class="headNav"href="">Integrations</a></div>
+            <div id="viewHidden"><a>Help</a>
+                <div id="homeHidden" >
+                    <div><a class="homeHidden"href="">Get started</a></div>
+                    <div><a class="homeHidden"href="">Help center</a></div>
+                    <div><a class="homeHidden"href="">Chat with us</a></div>
+                    <div><a class="homeHidden"href="">Give feedback</a></div>
+                </div>
+            </div>
+            <div id="ViewUserHidden"><a>User</a>
+                <div id="userHidden">
+                    <div style="padding-top:5px;"><a class="userHidden" href="/accountSettings">Account Settings</a></div>
+                    <div><a class="userHidden" href="">Billing</a></div>
+                    <div><a class="userHidden" href="">Calendar Connections</a></div>
+                    <div><a class="userHidden" href="/organization">Admin Management</a></div>
+                    <div><a class="userHidden" href="">Organization Settings</a></div>
+                    <div><a class="userHidden" href="">Share your Link</a></div>
+                    <div><a class="userHidden" href="">Apps</a></div>
+                    <div style="padding-top:10px;border-top: 1px solid gray;"><a class="userHidden" th:href="@{/logout}">Log Out</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<div style="box-shadow: 0px 2px 10px -2px gray;">
+    <div style="display:flex;width:980px;margin:auto auto;justify-content:space-between;" >
+        <div>
+            <p style="padding:16px 0px 8px;font-family:sans-serif;font-size:24px;">Admin Management</p>
+            <button style="background-color: #336699; color: white; border: none; padding: 10px; border-radius: 5px;height:48px;">
+                <a href="/organization" style="color: white; text-decoration: none; font-weight: bold;">All People</a>
+            </button>
+            <button style="background-color: pink; color: white; border: none; padding: 10px; border-radius: 5px;height:48px;">
+                <a href="/newFeature" style="color: white; text-decoration: none; font-weight: bold;">Groups</a>
+            </button>
+            <button style="background-color: pink; color: white; border: none; padding: 10px; border-radius: 5px;height:48px;">
+                <a href="/newFeature" style="color: white; text-decoration: none; font-weight: bold;">Managed Events</a>
+            </button>
+            <button style="background-color: pink; color: white; border: none; padding: 10px; border-radius: 5px;height:48px;">
+                <a href="/organization/activityLog" style="color: white; text-decoration: none; font-weight: bold;">Activity Log</a>
+            </button>
+        </div>
+        <div style="width:80px;height:40px;font-weight: bold;border-radius:30px;background-color: dodgerblue;margin-top:40px;"><a style="text-decoration: none;"th:href="@{/organization/new}"><p style="color:white;text-align: center;">New User</p></a></div>
+    </div>
+</div>
+<div style="width:980px;margin-right:auto;margin-left:auto;margin-top:20px;margin-bottom:20px">
+    <form action="/organization/search">
+        <label for="search">Search:</label>
+        <input type="text" id="search" name="search" placeholder="Enter your search terms here">
+        <input type="submit" value="Search">
+    </form>
+</div>
+<div class="users-container" style="width:980px;margin-left:auto;margin-right:auto;margin-top:30px;">
+
+    <form th:action="@{/users}" method="post">
+        <table style="width:980px;margin:auto auto;">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Calendly Page</th>
+                <th>Role</th>
+                <th>Status</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="user : ${users}">
+                <td><p th:text="${user.name}"></p></td>
+                <th:block th:if="${user.role} != 'OWNER' and ${userRole} !='USER'">
+                    <td ><a th:href="@{'/dashboard/event_types/user/'+${user.id}}"><p th:text="${user.name}"></p></a></td>
+                </th:block>
+                <th:block th:else>
+                    <td ><p th:text="${user.name}"></p></td>
+                </th:block>
+                <td th:text="${user.role}"></td>
+                <td th:text="${user.status}"></td>
+                <div th:if="${user.role} != 'OWNER' and ${user.id} != ${id}">
+                    <td class="options">
+                        <i class="fa-sharp fa-solid fa-gear" style="padding-top:5px;"></i>
+                        <div class="menu">
+                            <a class="remove" th:href="@{'organization/remove/'+${user.id}}">Remove</a>
+                            <a class="changeRole" th:href="@{'organization/changeRole/'+${user.id}+'?role=USER'}">User</a>
+                            <a class="changeRole" th:href="@{'organization/changeRole/'+${user.id}+'?role=ADMIN'}">Admin</a>
+                            <a class="changeRole" th:href="@{'organization/changeRole/'+${user.id}+'?role=OWNER'}">Owner</a>
+                        </div>
+                    </td>
+                </div>
+            </tr>
+            </tbody>
+        </table>
+    </form>
+</div>
+</body>
+</html>

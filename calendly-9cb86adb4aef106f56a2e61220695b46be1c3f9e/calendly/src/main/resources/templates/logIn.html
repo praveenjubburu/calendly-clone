@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+       <title>Log In</title>
+    </head>
+    <body style="margin-left: 350px;">
+        <header style="color:dodgerblue;font-size:30px;font-weight: bold;"><a style="text-decoration: none; color: dodgerblue;" href="/home"><img style="width:30px;margin-top:50px;font-family: sans-serif;" src="https://assets.calendly.com/assets/frontend/media/logo-square-cd364a3c33976d32792a.png">Calendly</a></header>
+
+        <p style="font-size:60px;font-weight:bold;width:450px;font-family: sans-serif;">
+            Welcome back to <span style="color: dodgerblue;">Calendly</span>
+        </p>
+        <p style="width:400px;font-size:20px;opacity:80%;letter-spacing:1px;word-spacing:5px;font-family: sans-serif;">Log in to your account to get back to your hub for scheduling meetings.</p>
+        <div style="margin-top: 80px;">
+            <form th:action="@{/google}">
+       <label style="font-size:20px;font-weight:bold;margin-left:30px;font-family: sans-serif;">Email Address</label></br>
+       <input style="width:340px;height:50px;border-radius:5px;font-size:20px;margin-top:30px;outline:none;border:1px solid gray;" required type="email" placeholder="Enter Your Email" name="email" />
+       <input style="width:100px;height:55px;border-radius:5px;background-color: dodgerblue;color: white;font-size:16px;border:none;" type="submit" value="Log In" /></form>
+            <p th:if="${value == 1}" style="color:red" th:text="${message}" ></p>
+       <p style="margin-top:40px;font-size:22px;font-weight:bold;opacity:70%;font-family: sans-serif;">Don't have an account?
+        <a style="margin-left:10px;color: dodgerblue;text-decoration: none;font-weight: bold;"  th:href="@{/oauth2/authorization/google}">Sign Up</a></p>
+       </div>
+       <div style="margin-left:900px;margin-top:-550px;">
+        <img style="width:400px;"src="https://images.ctfassets.net/k0lk9kiuza3o/59iAyVjqqMENsNFL0v6bl2/07024e4c1f4013d7cf49de86e70e16b5/Bg-Shape.svg">
+       </div>
+    </body>
+</html>

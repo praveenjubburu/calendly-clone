@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Calendar</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<div class="container">
+    <h1 class="text-center my-5">Calendar</h1>
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+            <th:block th:if="${fetch}==1">
+                <th:block th:if="${eventType}=='Collective'">
+                    <form th:action="@{/editCollective-booking}" method="post">
+                        <div class="form-group">
+                            <label for="date">Select a date:</label>
+                            <input type="date" id="date" name="selectedDate" th:min="${startDate}" th:max="${endDate}" class="form-control" required>
+                        </div>
+                        <input type="hidden" th:value="${bookingId}" name="bookingId">
+                        <input type="hidden" th:value="${eventId}" name="eventId">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </th:block>
+                <th:block th:if="${eventType}=='RoundRobin'">
+                    <form th:action="@{/editRoundRobin-booking}" method="post">
+                        <div class="form-group">
+                            <label for="date">Select a date:</label>
+                            <input type="date" id="date" name="selectedDate" th:min="${startDate}" th:max="${endDate}" class="form-control" required>
+                        </div>
+                        <input type="hidden" th:value="${bookingId}" name="bookingId">
+                        <input type="hidden" th:value="${eventId}" name="eventId">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </th:block>
+                <th:block th:if="${eventType}=='Group'">
+                    <form th:action="@{/editProcess-date}" method="post">
+                        <div class="form-group">
+                            <label for="date">Select a date:</label>
+                            <input type="date" id="date" name="selectedDate" th:min="${startDate}" th:max="${endDate}" class="form-control" required>
+                        </div>
+                        <input type="hidden" th:value="${bookingId}" name="bookingId">
+                        <input type="hidden" th:value="${eventId}" name="eventId">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </th:block>
+                <th:block th:if="${eventType}=='OneOnOne'">
+                    <form th:action="@{/editProcess-date}" method="post">
+                        <div class="form-group">
+                            <label for="date">Select a date:</label>
+                            <input type="date" id="date" name="selectedDate" th:min="${startDate}" th:max="${endDate}" class="form-control" required>
+                        </div>
+                        <input type="hidden" th:value="${bookingId}" name="bookingId">
+                        <input type="hidden" th:value="${eventId}" name="eventId">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </th:block>
+            </th:block>
+            <th:block th:if="${fetch}!=1">
+                <th:block th:if="${eventType}=='Collective'">
+                    <form th:action="@{/collective-booking}">
+                        <div class="form-group">
+                            <label for="date">Select a date:</label>
+                            <input type="date" id="date" name="selectedDate" th:min="${startDate}" th:max="${endDate}" class="form-control" required>
+                        </div>
+                        <input type="hidden" th:value="${bookingId}" name="bookingId">
+                        <input type="hidden" th:value="${eventId}" name="eventId">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </th:block>
+                <th:block th:if="${eventType}=='RoundRobin'">
+                    <form th:action="@{/process-date}" method="post">
+                        <div class="form-group">
+                            <label for="date">Select a date:</label>
+                            <input type="date" id="date" name="selectedDate" th:min="${startDate}" th:max="${endDate}" class="form-control" required>
+                        </div>
+                        <input type="hidden" th:value="${bookingId}" name="bookingId">
+                        <input type="hidden" th:value="${eventId}" name="eventId">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </th:block>
+                <th:block th:if="${eventType}=='Group'">
+                    <form th:action="@{/process-date}" method="post">
+                        <div class="form-group">
+                            <label for="date">Select a date:</label>
+                            <input type="date" id="date" name="selectedDate" th:min="${startDate}" th:max="${endDate}" class="form-control" required>
+                        </div>
+                        <input type="hidden" th:value="${bookingId}" name="bookingId">
+                        <input type="hidden" th:value="${eventId}" name="eventId">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </th:block>
+                <th:block th:if="${eventType}=='OneOnOne'">
+                    <form th:action="@{/process-date}" method="post">
+                        <div class="form-group">
+                            <label for="date">Select a date:</label>
+                            <input type="date" id="date" name="selectedDate" th:min="${startDate}" th:max="${endDate}" class="form-control" required>
+                        </div>
+                        <input type="hidden" th:value="${bookingId}" name="bookingId">
+                        <input type="hidden" th:value="${eventId}" name="eventId">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </th:block>
+            </th:block>
+        </div>
+    </div>
+    <div th:if="${value ==1}" class="row justify-content-center mt-5">
+        <div class="col-lg-6">
+            <form th:action="@{/conformBooking}" method="post" th:object="${booking}">
+                <input type="hidden" name="bookingId" th:value="${booking.id}">
+                <input type="hidden" name="date" th:value="${date}">
+                <input type="hidden" th:value="${eventId}" name="eventId">
+                <div class="form-group">
+                    <label>Select a time:</label>
+                    <div th:each="time : ${slotTimes}" class="form-check">
+                        <input type="radio" name="time" th:value="${time.key}" class="form-check-input">
+                        <label  class="form-check-label" th:text="${time.key}"></label>
+                        <span  th:if="${group == 1}" style="color : red;" th:text="${time.value}"></span>
+                        <input th:value="${time.value}" type="hidden" name="hostId">
+                    </div>
+                </div>
+                <span style="color : red;" th:text="${message}"></span>
+                <div class="form-group">
+                    <input type="text" name="name" placeholder="Enter Your name" th:field="*{name}"  class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="email" name="email" placeholder="Enter Your email" th:field="*{email}" class="form-control">
+                </div>
+                <div class="form-group">
+                    <textarea name="description" placeholder="Enter Your description" th:field="*{description}" class="form-control"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,108 @@
+
+#headNav{
+    padding-top: 40px;
+}
+.headNav{
+    text-decoration: none;
+    color: black;    
+}
+#homeHidden{
+    position:absolute;
+    background-color: white;
+    box-shadow: 0px 2px 10px gray;
+    width: 140px;
+    display: none;
+    height: 140px;
+    margin-top:20px;
+    margin-left:-40px;
+    border-radius: 10px;
+}
+#viewHidden{
+    height:60px;
+}
+#homeHidden>div{
+    margin-top: 15px;
+}
+.homeHidden:hover{
+    color: dodgerblue;
+}
+.homeHidden{
+    margin-left: 10px;
+    text-decoration: none;
+    color: black;
+    opacity: 70%;
+}
+#viewHidden:hover #homeHidden{
+    display: block;
+}
+.userHidden:hover{
+color: dodgerblue;
+opacity: 70%;
+}
+.userHidden{
+    text-decoration: none;
+    opacity: 70%;
+    color:black;
+    padding-left: 15px;
+}
+#userHidden>div{
+    margin-top: 17px;
+}
+#userHidden{
+    position: absolute;
+    background-color: white;
+    box-shadow: 0px 2px 10px gray;
+    display: none;
+    width:200px;
+    height: 310px;
+    margin-top: 20px;
+    margin-left: -70px;
+    border-radius: 10px;
+}
+#ViewUserHidden:hover #userHidden{
+    display: block;
+}
+.bodyNav{
+    text-decoration: none;
+    color:black;
+    font-weight: bold;
+    opacity: 50%;
+}
+.bodyNav:hover{
+    color: dodgerblue;
+    opacity: 100%;
+}
+#nav>div{
+    height:60px;
+}
+#dateRange:hover #dateRangeHidden{
+    display: block;
+}
+#dateRangeHidden{
+    position: absolute;
+    margin-left: -90px;
+    width: 350px;
+    height: 400px;
+    margin-top: 16px;
+    display: none;
+}
+#content{
+    border-top: 1px solid gray ;
+    box-shadow: 0px 2px 10px gray;
+    width: 1000px;
+    height: 400px;
+    margin-left: 400px;
+    margin-top: 120px;
+    border-radius: 10px;
+}
+.content{
+    text-decoration: none;
+    font-weight:bold;
+    opacity: 70%;
+    color: black;
+}
+.content:hover{
+    color: dodgerblue;
+    opacity:100%;
+
+}

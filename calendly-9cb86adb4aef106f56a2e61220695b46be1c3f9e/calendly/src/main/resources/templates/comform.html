@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <title>Calendly</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+
+  <style>
+  body {
+  background-color: ghostwhite;
+  font-family: Lato;
+}
+
+h3 {
+  color: darkslategray;
+  margin-top: 0;
+}
+
+h4 {
+  color: darkslategray;
+  font-weight: 300;
+  margin-top: 0;
+}
+
+p {
+  font-weight: 300;
+}
+
+button {
+  height: 50px;
+  background-color: dodgerblue;
+  color: white;
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: 5px;
+  border: none;
+}
+
+.back-btn {
+  margin-bottom: 30px;
+  border-radius: 50%;
+  border: 2px solid ghostwhite;
+  background-color: white;
+  height: 40px;
+  width: 40px;
+}
+
+.back-btn:hover {
+  background-color: lightblue;
+}
+
+.back-btn:focus {
+  outline: 0;
+}
+
+.back-btn .arrow-icon {
+  width: 20px;
+  margin-top: 3px;
+}
+
+label {
+  font-size: 0.85rem;
+  font-family: Lato;
+  font-weight: 600;
+  color: darkslategray;
+}
+
+input {
+  display: block;
+  height: 40px;
+  border: 1px solid lightgray;
+  border-radius: 0;
+  margin: 10px 0 20px 0;
+  padding: 0 15px;
+  font-family: Lato;
+  color: darkslategray;
+  font-size: 1rem;
+}
+
+input:focus {
+  outline: 0;
+  border: 1.5px solid dodgerblue;
+  border-radius: 0;
+}
+
+.divider {
+  height: 100%;
+  border-left: solid .5px whitesmoke;
+}
+
+.container {
+  background-color: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 100px auto;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border-radius: 10px;
+  height: 525px;
+  max-width: 800px;
+}
+
+.description-section {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  margin: 30px;
+}
+
+.body-section {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  margin: 30px;
+}
+
+hgroup {
+  line-height: 0.8rem;
+  margin-bottom: 30px;
+}
+
+#event {
+  font-weight: 700;
+  color: darkslategray;
+}
+
+#scheduler, #duration {
+  font-weight: 400;
+  color: darkgray;
+}
+
+#event-time-stamp {
+  margin: 0;
+  margin-left: 5px;
+  font-weight: 400;
+  color: mediumseagreen;
+  line-height: 1.3;
+}
+
+.icon-text-div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.icon-text-div img {
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+}
+
+.icon-text-div #duration {
+  margin: 0;
+}
+
+@media (max-width: 1250px) {
+  .container {
+    display: block;
+    height: 85vh;
+    text-align: center;
+    width: 645px;
+    margin: 50px auto;
+    overflow-y: scroll;
+  }
+  .description-section {
+    padding-top: 30px;
+    margin: 30px 100px;
+  }
+  .body-section {
+    margin: 30px 50px;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .icon-text-div {
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  .divider {
+    height: auto;
+    border-top: solid .5px whitesmoke;
+  }
+}
+
+@media (max-width: 645px) {
+  body {
+    background-color: white;
+  }
+  .container {
+    background-color: none;
+    width: auto;
+    margin: 50px 0;
+    overflow: auto;
+  }
+  .description-section {
+    padding: 0;
+    margin: 30px 5%;
+  }
+  .body-section {
+    padding: 0;
+    margin: 30px 2%;
+  }
+}
+/*# sourceMappingURL=styles.css.map */
+.container {
+  display: block;
+  height: 85vh;
+  text-align: center;
+  width: 645px;
+  margin: 50px auto;
+  overflow: auto;
+}
+
+.body-section, .description-section {
+  margin: 50px 100px;
+}
+
+.description-section {
+  border-top: 1px solid ghostwhite;
+  border-bottom: 1px solid ghostwhite;
+  padding-top: 25px;
+  text-align: initial;
+}
+
+@media (max-width: 1250px) {
+  .icon-text-div {
+    -webkit-box-pack: left;
+        -ms-flex-pack: left;
+            justify-content: left;
+  }
+}
+
+@media (max-width: 645px) {
+  .container {
+    width: auto;
+  }
+  .description-section {
+    margin: 30px 5%;
+  }
+  .body-section {
+    margin: 30px 2%;
+  }
+}
+/*# sourceMappingURL=confirm.css.map */
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+  <section class="body-section">
+    <h2 style="color:dodgerblue">Confirmed!</h2>
+    <p id="scheduler">You are scheduled with ACME Sales.</p>
+  </section>
+  <section class="description-section">
+    <hgroup>
+      <h3 id="event">Pricing Review</h3>
+      <div class="icon-text-div" style="margin-top:50px">
+        <span style="font-size:15px;font-weight:bold">Duration : </span> <p style="font-size:15px;color:dodgerblue" id="duration" th:text="${eventTime}"></p><span style="margin-left:10px;font-size:15px;color:dodgerblue">Min</span>
+      </div><br>
+      <div>
+      <p class="icon-text-div">
+        <span style="font-size:15px;font-weight:bold">Timings : </span>  <span style="margin-left:10px;font-size:15px;color:dodgerblue" id="event-time-stamp" th:text="${time}"></span><span style="margin-left:30px;margin-left:10px;font-size:15px;color:dodgerblue" th:text="${date}"></span>
+      </div>
+    </hgroup>
+  </section>
+  <form style="margin-left:45%;margin-top:60%" th:action="@{/dashboard}">
+    <input  style="width:100px;height:40px;background-color:dodgerblue;color:white;font-weight:bold;font-size:15px" type="submit" value="Home">
+  </form>
+</div>
+
+<script src="script/confirm.js"></script>
+
+</body>
+</html>

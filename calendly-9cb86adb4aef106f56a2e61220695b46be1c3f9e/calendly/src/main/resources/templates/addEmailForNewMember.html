@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security/">
+<head>
+    <title>Calendly</title>
+    <style>
+        header{
+    margin-left:400px;
+}
+#headNav{
+    padding-top: 40px;
+}
+.headNav{
+    text-decoration: none;
+    color: black;
+}
+#homeHidden{
+    position:absolute;
+    background-color: white;
+    width: 140px;
+    display: none;
+    height: 140px;
+    margin-top:20px;
+    margin-left:-40px;
+    box-shadow: 2px 2px 10px gray;
+    border-radius: 10px;
+}
+#viewHidden{
+    height:60px;
+}
+#homeHidden>div{
+    margin-top: 15px;
+}
+.homeHidden:hover{
+    color: dodgerblue;
+}
+.homeHidden{
+    margin-left: 10px;
+    text-decoration: none;
+    color: black;
+    opacity: 70%;
+}
+#viewHidden:hover #homeHidden{
+    display: block;
+}
+.userHidden:hover{
+color: dodgerblue;
+opacity: 70%;
+}
+.userHidden{
+    text-decoration: none;
+    opacity: 70%;
+    color:black;
+    padding-left: 15px;
+}
+#userHidden>div{
+    margin-top: 17px;
+}
+#userHidden{
+    position: absolute;
+    background-color: white;
+    display: none;
+    width:200px;
+    height: 310px;
+    margin-top: 20px;
+    margin-left: -70px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 10px gray;
+}
+#ViewUserHidden:hover #userHidden{
+    display: block;
+}
+.bodyNav{
+    text-decoration: none;
+    color:black;
+    font-weight: bold;
+    opacity: 50%;
+}
+.bodyNav:hover{
+    color: dodgerblue;
+    opacity: 100%;
+}
+#nav>div{
+    height:60px;
+}
+.events{
+background:tan;
+}
+        .event-container{
+          margin-top:50px;
+          width:980px;
+          margin-left:auto;
+          margin-right:auto;
+          display:grid;
+          grid-template-columns:auto auto auto;
+
+          }
+          .event:hover{
+            transform:scale(1.01,1.01);
+            }
+          .event{
+          display:flex;
+         flex-direction:column;
+          justify-content:space-between;
+          border-radius:5px;
+          box-shadow:0px 1px 2px gray;
+          width:308px;
+          height:250px;
+          margin:5px;
+          padding:12px;
+          }
+          .event-nav-bar{
+            display:flex;
+            justify-content:space-between;
+            }
+          .event-body{
+             display:flex;
+             flex-direction:column;
+             justify-content:space-evenly;
+          }
+          .event-footer{
+            display:flex;
+            border-top:0.5px solid black;
+            padding:10px;
+            justify-content:space-between;
+            }
+            .search-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+input[type=text] {
+  padding: 10px;
+  border: 1px solid grey;
+  border-radius: 4px;
+  margin-right: 10px;
+  width: 50%;
+}
+
+button[type=submit] {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            text-align: left;
+            padding: 8px;
+            border-bottom: 1px solid #ddd;
+        }
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        input[type="checkbox"] {
+            margin-right: 5px;
+        }
+        button[type="submit"] {
+            margin-top: 10px;
+            padding: 8px 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button[type="submit"]:hover {
+            background-color: #3e8e41;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div style="display: flex;justify-content: space-between;width:1000px;background-color: white;">
+        <div style="padding-top:10px;"><img style="width:40px" src="https://assets.calendly.com/assets/frontend/media/logo-square-cd364a3c33976d32792a.png"></div>
+
+
+        <div id="headNav"style="display: flex;justify-content: space-between;width:400px;">
+            <div><a style="font-weight: bold;"class="headNav"   th:href="@{/dashboard}">Home</a></div>
+            <div><a class="headNav"th:href="@{/schedule}">Availability</a></div>
+            <div><a class="headNav"href="">Integrations</a></div>
+            <div id="viewHidden"><a>Help</a>
+                <div id="homeHidden" >
+                    <div><a class="homeHidden"href="">Get started</a></div>
+                    <div><a class="homeHidden"href="">Help center</a></div>
+                    <div><a class="homeHidden"href="">Chat with us</a></div>
+                    <div><a class="homeHidden"href="">Give feedback</a></div>
+                </div>
+            </div>
+            <div id="ViewUserHidden"><a>User</a>
+                <div id="userHidden">
+                    <div style="padding-top:5px;"><a class="userHidden" href="">Account Settings</a></div>
+                    <div><a class="userHidden" href="">Billing</a></div>
+                    <div><a class="userHidden" href="">Calendar Connections</a></div>
+                    <div><a class="userHidden" href="">Admin Management</a></div>
+                    <div><a class="userHidden" href="/organization">Organization Settings</a></div>
+                    <div><a class="userHidden" href="">Share your Link</a></div>
+                    <div><a class="userHidden" href="">Apps</a></div>
+                    <div style="padding-top:10px;border-top: 1px solid gray;"><a class="userHidden" th:href="@{/logout}">Log Out</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<div style="box-shadow: 0px 2px 10px -2px gray;">
+
+</div>
+<div calss="body-container" style="width:980px;margin-top:30px;margin-left:auto;margin-right:auto;">
+    <input type="checkbox" checked="true" style="width:18px;height:18px"><p style="font-size:23px;display:inline;margin-right:18px;">Add Email</p>
+    <input type="checkbox"  style="width:18px;height:18px"><p style="font-size:23px;display:inline;margin-right:18px;">Add setRole</p>
+    <input type="checkbox"  style="width:18px;height:18px"><p style="font-size:23px;display:inline;margin-right:18px;">Done</p>
+     <form action="/organization/emails">
+         <p style="width:500px;height:40px;padding;font-size:28px;margin:25px 0px 8px;">Add emails you want to invite</p>
+          <p style="width:500px;font-size:16px;margin:8px 0px;">Type or paste the emails</p>
+         <p style="width:500px;font-size:22px;margin:8px 0px;">Separate each email address with a comma</p>
+         <textarea name="emails" style="width:500px;height:170px;padding:10px 15px;"></textarea></br></br>
+         <button class="btn">Set Roles</button>
+     </form>
+</div>
+
+</body>
+</html>

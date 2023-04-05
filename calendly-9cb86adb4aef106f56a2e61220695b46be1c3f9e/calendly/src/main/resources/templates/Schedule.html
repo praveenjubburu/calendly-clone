@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security/">
+<head>
+    <title>Calendly</title>
+    <link rel="stylesheet" href="eventType.css">
+    <style>
+/* Apply a CSS reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Set font family and size */
+body {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+}
+
+/* Set a max-width to keep content from stretching too wide */
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* Style the header */
+header {
+    background-color: #fff;
+    box-shadow: 0px 2px 10px -2px gray;
+    padding: 10px;
+}
+
+/* Style the logo */
+header img {
+    width: 40px;
+}
+
+/* Style the navigation links */
+nav a {
+    font-weight: bold;
+    text-decoration: none;
+    color: #333;
+    padding: 10px;
+    transition: all 0.3s ease;
+}
+
+nav a:hover {
+    background-color: #eee;
+}
+
+/* Style the dropdown menus */
+.dropdown {
+    position: relative;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    z-index: 1;
+    background-color: #fff;
+    box-shadow: 0px 2px 10px -2px gray;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-content a {
+    color: #333;
+    padding: 10px;
+    display: block;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.dropdown-content a:hover {
+    background-color: #eee;
+}
+
+/* Style the main heading */
+h1 {
+    font-size: 36px;
+    margin: 20px 0;
+}
+
+/* Style the form */
+form {
+    margin: 20px 0;
+}
+
+label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 10px;
+}
+
+input[type="text"], input[type="time"], input[type="checkbox"] {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 16px;
+    width: 100%;
+}
+
+input[type="checkbox"] {
+    display: inline-block;
+    margin: 0 10px 0 0;
+}
+
+/* Style the button */
+button {
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #444;
+}
+
+/* Style the schedule box */
+.schedule-box {
+    box-shadow: 0px 2px 10px -2px gray;
+    margin: 20px 0;
+    padding: 20px;
+}
+
+.schedule-box p {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+/* Style the time range input */
+.time-range-input {
+    display: flex;
+    align-items: center;
+}
+
+.time-range-input span {
+    margin: 0 10px;
+}
+
+/* Style the success message */
+.success-message {
+    background-color: #d4edda;
+    color: #155724;
+    padding: 10px;
+    border-radius: 3px;
+    margin-top: 20px;
+}
+/* Navbar styles */
+header {
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 9999;
+}
+#viewHidden{
+margin-top:5px
+}
+#headNav {
+  align-items: center;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.headNav {
+  color: #525f7f;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.5;
+  padding: 10px 15px;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.headNav:hover {
+  background-color: #f8f9fe;
+  color: #5e72e4;
+}
+
+#homeHidden,
+#userHidden {
+  background-color: #fff;
+  border-radius: 4px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: none;
+  margin-top:300px;
+  margin-left:-200px
+  position: absolute;
+  width: 240px;
+  }
+
+#homeHidden a,
+#userHidden a {
+  color: #525f7f;
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.5;
+  padding: 10px 15px;
+  text-decoration: none;
+}
+
+#homeHidden a:hover,
+#userHidden a:hover {
+  background-color: #f8f9fe;
+  color: #5e72e4;
+}
+
+#viewHidden:hover #homeHidden,
+#ViewUserHidden:hover #userHidden {
+  display: block;
+}
+
+
+</style>
+    <script>
+    function updateTimeRangeInput(day) {
+        const fromTimeInput = document.getElementById(day + '-from-time');
+        const toTimeInput = document.getElementById(day + '-to-time');
+        const timeRangeInput = document.getElementById(day + '-time-range');
+
+        const fromTimeValue = fromTimeInput.value;
+        const toTimeValue = toTimeInput.value;
+
+        timeRangeInput.value = fromTimeValue + '-' + toTimeValue;
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+        const days = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
+
+        days.forEach(function(day) {
+            const fromTimeInput = document.getElementById(day + '-from-time');
+            const toTimeInput = document.getElementById(day + '-to-time');
+
+            fromTimeInput.addEventListener('input', function() {
+                updateTimeRangeInput(day);
+            });
+
+            toTimeInput.addEventListener('input', function() {
+                updateTimeRangeInput(day);
+            });
+        });
+    });
+</script>
+</head>
+<body>
+<header>
+    <div style="display: flex;justify-content: space-between;width:1000px;background-color: white;margin-left:350px;height:80px">
+        <div style="padding-top:10px;"><a href="/dashboard"><img style="width:40px" src="https://assets.calendly.com/assets/frontend/media/logo-square-cd364a3c33976d32792a.png"></a></div>
+        <div id="headNav"style="display: flex;justify-content: space-between;width:500px;">
+            <div><a style="font-weight: bold;"class="headNav" th:href="@{/dashboard}">Home</a></div>
+            <div><a class="headNav"href="">Availability</a></div>
+            <div><a class="headNav"href="">Integrations</a></div>
+            <div id="viewHidden"><a>Help</a>
+                <div id="homeHidden" >
+                    <div><a class="homeHidden"href="">Get started</a></div>
+                    <div><a class="homeHidden"href="">Help center</a></div>
+                    <div><a class="homeHidden"href="">Chat with us</a></div>
+                    <div><a class="homeHidden"href="">Give feedback</a></div>
+                </div>
+            </div>
+            <div id="ViewUserHidden"><a>User</a>
+                <div id="userHidden">
+                    <div style="padding-top:5px;"><a class="userHidden" href="">Account Settings</a></div>
+                    <div><a class="userHidden" href="">Billing</a></div>
+                    <div><a class="userHidden" href="">Calendar Connections</a></div>
+                    <div><a class="userHidden" href="/organization">Admin Management</a></div>
+                    <div><a class="userHidden" href="">Organization Settings</a></div>
+                    <div><a class="userHidden" href="">Share your Link</a></div>
+                    <div><a class="userHidden" href="">Apps</a></div>
+                    <div style="padding-top:10px;border-top: 1px solid gray;"><a class="userHidden" th:href="@{/logout}">Log Out</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<div style="box-shadow: 0px 2px 10px -2px gray;">
+    <div style="display:flex;width:900px;margin-left:400px;justify-content: space-between;margin-top:90px" >
+        <h1>Set Your Availability</h1>
+    </div>
+</div>
+<div class="schedule-box">
+    <div style="display:flex;flex-direction:column;width:900px;margin-left:400px;justify-content: space-between;" >
+        <p>Choose a schedule below to edit or create a new one that you can apply to your event types</p>
+        <p>SCHEDULE</p>
+        <form action="#" th:action="@{/addSchedule}" th:object="${schedule}">
+            <p>Schedule Name</p>
+            <input type="text" th:field="*{name}"/>
+            <div class="form-group">
+                <label for="sunday-time-range">Sunday:</label>
+                <input type="checkbox" th:value="UnAvailable" th:field="*{sunday}"/>
+                <p>If You don't want to work this day </p>
+
+                <div class="time-range-input">
+                    <input type="time" id="sunday-from-time" name="sundayFromTime" th:value="${sundayFromTime}" class="form-control" >
+                    <span>-</span>
+                    <input type="time" id="sunday-to-time" name="sundayToTime" th:value="${sundayToTime}" class="form-control" >
+                    <input type="hidden" id="sunday-time-range" name="sundayTimeRange" th:field="*{sunday}">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="monday-time-range">Monday:</label>
+                <input type="checkbox" th:value="UnAvailable" th:field="*{monday}"/>
+                <p>If You don't want to work this day </p>
+
+                <div class="time-range-input">
+                    <input type="time" id="monday-from-time" name="mondayFromTime" th:value="${mondayFromTime}" class="form-control" >
+                    <span>-</span>
+                    <input type="time" id="monday-to-time" name="mondayToTime" th:value="${mondayToTime}" class="form-control" >
+                    <input type="hidden" id="monday-time-range" name="mondayTimeRange"  th:field="*{monday}">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="tuesday-time-range">Tuesday:</label>
+                <input type="checkbox" th:value="UnAvailable" th:field="*{tuesday}"/>
+                <p>If You don't want to work this day </p>
+
+                <div class="time-range-input">
+                    <input type="time" id="tuesday-from-time" name="tuesdayFromTime" th:value="${tuesdayFromTime}" class="form-control" >
+                    <span>-</span>
+                    <input type="time" id="tuesday-to-time" name="tuesdayToTime" th:value="${tuesdayToTime}" class="form-control" >
+                    <input type="hidden" id="tuesday-time-range" name="tuesdayTimeRange"  th:field="*{tuesday}">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="wednesday-time-range">Wednesday:</label>
+                <input type="checkbox" th:value="UnAvailable" th:field="*{wednesday}"/>
+                <p>If You don't want to work this day </p>
+                <div class="time-range-input">
+                    <input type="time" id="wednesday-from-time" name="wednesdayFromTime" th:value="${wednesdayFromTime}" class="form-control" >
+                    <span>-</span>
+                    <input type="time" id="wednesday-to-time" name="wednesdayToTime" th:value="${wednesdayToTime}" class="form-control" >
+                    <input type="hidden" id="wednesday-time-range" name="wednesdayTimeRange"  th:field="*{wednesday}">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="thursday-time-range">Thursday:</label>
+                <input type="checkbox" th:value="UnAvailable" th:field="*{thursday}"/>
+                <p>If You don't want to work this day </p>
+
+                <div class="time-range-input">
+                    <input type="time" id="thursday-from-time" name="thursdayFromTime" th:value="${thursdayFromTime}" class="form-control" >
+                    <span>-</span>
+                    <input type="time" id="thursday-to-time" name="thursdayToTime" th:value="${thursdayToTime}" class="form-control" >
+                    <input type="hidden" id="thursday-time-range" name="thursdayTimeRange"  th:field="*{thursday}">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="friday-time-range">Friday:</label>
+                <input type="checkbox" th:value="UnAvailable" th:field="*{friday}"/>
+                <p>If You don't want to work this day </p>
+
+                <div class="time-range-input">
+                    <input type="time" id="friday-from-time" name="fridayFromTime" th:value="${fridayFromTime}" class="form-control" >
+                    <span>-</span>
+                    <input type="time" id="friday-to-time" name="fridayToTime" th:value="${fridayToTime}" class="form-control" >
+                    <input type="hidden" id="friday-time-range" name="fridayTimeRange"  th:field="*{friday}">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="saturday-time-range">Saturday:</label><input type="checkbox" th:value="UnAvailable" th:field="*{saturday}"/>
+                <p>If You don't want to work this day </p>
+
+                <div class="time-range-input">
+                    <input type="time" id="saturday-from-time" name="saturdayFromTime" th:value="${saturdayFromTime}" class="form-control" >
+                    <span>-</span>
+                    <input type="time" id="saturday-to-time" name="saturdayToTime" th:value="${saturdayToTime}" class="form-control" >
+                    <input type="hidden" id="saturday-time-range" name="saturdayTimeRange" th:field="*{saturday}">
+                </div>
+            </div>
+            <input type="submit" value="submit"/>
+        </form>
+    </div>
+</div>
+</body>
+</html>

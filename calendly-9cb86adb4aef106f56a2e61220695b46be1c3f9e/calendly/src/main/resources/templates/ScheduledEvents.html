@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Calendly</title>
+    <link rel="stylesheet" href="ScheduledEvents.css">
+    <style>
+
+#headNav{
+    padding-top: 40px;
+}
+.headNav{
+    text-decoration: none;
+    color: black;
+}
+#homeHidden{
+    position:absolute;
+    background-color: white;
+    box-shadow: 0px 2px 10px gray;
+    width: 140px;
+    display: none;
+    height: 140px;
+    margin-top:20px;
+    margin-left:-40px;
+    border-radius: 10px;
+}
+#viewHidden{
+    height:60px;
+}
+#homeHidden>div{
+    margin-top: 15px;
+}
+.homeHidden:hover{
+    color: dodgerblue;
+}
+.homeHidden{
+    margin-left: 10px;
+    text-decoration: none;
+    color: black;
+    opacity: 70%;
+}
+#viewHidden:hover #homeHidden{
+    display: block;
+}
+.userHidden:hover{
+color: dodgerblue;
+opacity: 70%;
+}
+.userHidden{
+    text-decoration: none;
+    opacity: 70%;
+    color:black;
+    padding-left: 15px;
+}
+#userHidden>div{
+    margin-top: 17px;
+}
+#userHidden{
+    position: absolute;
+    background-color: white;
+    box-shadow: 0px 2px 10px gray;
+    display: none;
+    width:200px;
+    height: 310px;
+    margin-top: 20px;
+    margin-left: -70px;
+    border-radius: 10px;
+}
+#ViewUserHidden:hover #userHidden{
+    display: block;
+}
+.bodyNav{
+    text-decoration: none;
+    color:black;
+    font-weight: bold;
+    opacity: 50%;
+}
+.bodyNav:hover{
+    color: dodgerblue;
+    opacity: 100%;
+}
+#nav>div{
+    height:60px;
+}
+#dateRange:hover #dateRangeHidden{
+    display: block;
+}
+#dateRangeHidden{
+    position: absolute;
+    margin-left: -90px;
+    width: 350px;
+    height: 400px;
+    margin-top: 16px;
+    display: none;
+}
+#container:hover{
+background-color:#fafafa;
+}
+#content{
+    border-top: 1px solid gray ;
+    box-shadow: 0px 2px 10px gray;
+    width: 1000px;
+    height: 400px;
+    margin-left: 400px;
+    margin-top: 120px;
+    border-radius: 10px;
+}
+.content{
+    text-decoration: none;
+    font-weight:bold;
+    opacity: 70%;
+    color: black;
+}
+.content:hover{
+    color: dodgerblue;
+    opacity:100%;
+    }
+    #hidden{
+    position:absolute;
+    display:none;
+    width:300px;
+    height:300px;
+    }
+   #dateRange:hover #hidden{
+    display:block
+    }
+}
+    </style>
+</head>
+<body>
+<header  style="border-bottom: 1px solid gray;">
+    <div style="display: flex;justify-content: space-between;margin-left: 400px;width:1000px;background-color: white;">
+        <div style="padding-top:10px;"><img style="width:40px" src="https://assets.calendly.com/assets/frontend/media/logo-square-cd364a3c33976d32792a.png"></div>
+
+
+        <div id="headNav"style="display: flex;justify-content: space-between;width:400px;">
+            <div><a style="font-weight: bold;"class="headNav" href="/dashboard">Home</a></div>
+            <div><a class="headNav"th:href="@{/schedule}">Availability</a></div>
+            <div><a class="headNav"href="">Integrations</a></div>
+            <div id="viewHidden"><a>Help</a>
+                  <div id="homeHidden" > 
+                     <div><a class="homeHidden"href="">Get started</a></div>
+                     <div><a class="homeHidden"href="">Help center</a></div>
+                     <div><a class="homeHidden"href="">Chat with us</a></div>
+                     <div><a class="homeHidden"href="">Give feedback</a></div>
+                 </div>
+            </div>
+            <div id="ViewUserHidden"><a>User</a>
+                <div id="userHidden">
+                <div style="padding-top:5px;"><a class="userHidden" th:href="@{/accountSettings}">Account Settings</a></div>
+                <div><a class="userHidden" href="">Billing</a></div>
+                <div><a class="userHidden" href="">Calendar Connections</a></div>
+                <div><a class="userHidden" href="/organization">Admin Management</a></div>
+                <div><a class="userHidden" href="">Organization Settings</a></div>
+                <div><a class="userHidden" href="">Share your Link</a></div>
+                <div><a class="userHidden" href="">Apps</a></div>
+                <div style="border-top: 1px solid gray;padding-top:10px;"><a class="userHidden" th:href="@{/logout}">Log Out</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<div style="box-shadow: 0px 2px 5px gray;">
+<div style="display:flex;width:1000px;margin-left:400px;justify-content: space-between;" >
+       <div id="nav"style="display: flex;justify-content: space-between;width:700px;margin-top:60px;margin-bottom:40px;">
+            <div ><a class="bodyNav"th:href="@{/dashboard}">Event Types</a></div>
+            <div style="border-bottom:2px solid dodgerblue;"><a class="bodyNav"th:href="@{/upComing}">Scheduled Events</a></div>
+            <div><a class="bodyNav"href="">Workflows</a></div>
+            <div><a class="bodyNav"href="">Routing Forms</a></div>
+           <div><a class="bodyNav"th:href="@{/myBookings}">My Bookings</a></div>
+       </div>
+      <div style="width:80px;height:40px;font-weight: bold;border-radius:30px;background-color: dodgerblue;margin-top:40px;">
+        <a style="text-decoration: none;"th:href="@{/selectEventType}"><p style="color:white;text-align: center;margin-top:8.5px;margin-left:-5px">+Create</p></a></div>
+</div>
+</div>
+<div id="content">
+    <div style="margin-top:30px;padding-left:40px;border-bottom:1px solid gray;"id="dataBlock">
+     <div style="display: flex; width:350px; justify-content: space-between;">
+        <div><a class="content"th:href="@{/upComing}">Upcoming</a></div>
+        <div><a class="content">Pending</a></div>
+        <div><a class="content"th:href="@{/Past}">Past</a></div>
+        <div style="height: 35px;" id="dateRange"><a class="content"
+        >Date Range</a>
+            <div id="hidden">
+                <form th:action="@{/sortByDate}" style="width: 400px; height:25x0px; margin: 20px auto; padding: 20px; background-color: white; box-shadow: 0px 2px 5px gray; text-align: center;">
+                    <h2 style="margin-bottom: 20px;">Select Date Range:</h2>
+                    <div style="display: inline-block; text-align: left; margin-bottom: 10px;">
+                        <label style="display: block; font-weight: bold; margin-bottom: 5px;">From Date:</label>
+                        <input type="date" name="fromDate" th:min="${startDate}" style="display: block; width: 100%; padding: 5px; border: 1px solid #ccc; border-radius: 3px;">
+                    </div>
+                    <div style="display: inline-block; text-align: left; margin-bottom: 10px;">
+                        <label style="display: block; font-weight: bold; margin-bottom: 5px;">To Date:</label>
+                        <input type="date" name="toDate"  th:min="${startDate}" style="display: block; width: 100%; padding: 5px; border: 1px solid #ccc; border-radius: 3px;">
+                    </div></br>
+                    <button type="submit" style="background-color:dodgerblue; color: white; padding: 10px 15px; border: none; border-radius: 3px; cursor: pointer; margin-top: 20px;">Apply</button>
+                </form>
+
+            </div>
+        </div>
+     </div>
+     </div>
+
+<!--    should in if condetion-->
+
+    <div style="overflow:scroll;height:300px">
+    <div  id="container"th:each="booking : ${bookingsData}">
+        <div  style="margin-top:20px;">
+            <span style="margin-left:25px; padding-top:7px;" th:text="${booking.date}">
+            </span><th:block  th:if="${#lists.contains(Today, booking.id)}"><span style="margin-left:120px;font-weight:bold;" th:text="Today"></span></th:block>
+            <th:block th:if="${#lists.contains(collectiveId, booking.id)}"><span style="margin-left:120px;font-weight:bold;color:dodgerblue;" th:text="Collective"></span></th:block>
+            <th:block th:if="${#lists.contains(oneOnOneId, booking.id)}"><span  style="margin-left:120px;font-weight:bold;color:dodgerblue;"th:text="OneOnOne"></span></th:block>
+            <th:block th:if="${#lists.contains(groupId, booking.id)}"><span style="margin-left:120px;font-weight:bold;color:dodgerblue;" th:text="Group"></span></th:block>
+            <th:block th:if="${#lists.contains(roundRobinId, booking.id)}"><span style="margin-left:120px;font-weight:bold;color:dodgerblue;" th:text="RoundRobin"></span></th:block></div>
+        <p style="margin-top:27px;margin-left:30px;width:250px" th:text="${booking.time}"></p>
+            <p style="margin-left:350px;margin-top:-30px" th:text="${booking.name}"></p>
+        <div id="vieHidden" style="cursor:pointer;margin-left:800px;margin-top:-50px">
+            <a th:href="@{/call/{id}/{value}(id=${booking.id},value=${value})}">Details</a>
+        </div>
+        </br>
+    </div>
+    </div>
+</div>
+</body>
+</html>

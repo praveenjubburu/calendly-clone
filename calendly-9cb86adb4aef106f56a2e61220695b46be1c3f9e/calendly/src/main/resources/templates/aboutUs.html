@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>About Us</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: #333;
+  color: #fff;
+  padding: 1em;
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav li {
+  display: inline-block;
+  margin-right: 1em;
+}
+
+nav li:last-child {
+  margin-right: 0;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+}
+
+main {
+  max-width: 800px;
+  margin: 2em auto;
+  padding: 0 1em;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.team-members {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.member {
+  margin: 1em;
+  text-align: center;
+}
+
+.member h3 {
+  margin-top: 0;
+}
+
+.description {
+  margin-top: 2em;
+}
+
+footer {
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 1em;
+}
+
+@media screen and (max-width: 480px) {
+  nav li {
+    display: block;
+    margin: 0.5em 0;
+  }
+}
+  </style>
+</head>
+<body>
+<header>
+  <nav>
+    <ul>
+      <li><a href="/dashboard">Home</a></li>
+    </ul>
+  </nav>
+</header>
+<main>
+  <section class="team">
+    <h2>Meet Our Team</h2>
+    <div class="team-members">
+      <div class="member">
+        <h3>Praveen</h3>
+        <p>Full Stack Developer</p>
+      </div>
+      <div class="member">
+        <h3>Anil</h3>
+        <p>Full Stack Developer</p>
+      </div>
+      <div class="member">
+        <h3>Aravind</h3>
+        <p>Full Stack Developer</p>
+      </div>
+    </div>
+  </section>
+  <section class="description">
+    <h2>About Our Calendly Clone</h2>
+    <p>We, Praveen, Anil and Aravind, are full stack developers who have created this Calendly clone to help people schedule appointments and meetings with ease. Our goal is to provide a simple and user-friendly platform that saves time and enhances productivity. We strive to improve the platform continuously and welcome any feedback from our users.</p>
+  </section>
+</main>
+<footer>
+  <p>&copy; 2023 Calendly Clone. All rights reserved.</p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,102 @@
+body{
+    margin-left: 250px;
+    width: 1580px;
+    height: 960px;
+    overflow: scroll;
+}
+header>a{
+    font-size: 30px;
+    color:dodgerblue;
+    text-decoration: none;
+    padding-top:0px;
+}
+header{
+    margin-top: 20px;
+    position:fixed;
+    height:100px;
+    margin-top:-160px;
+    background-color: white;
+    width: 1300px;
+    display: flex;
+    justify-content: space-between;
+}
+#headernavBar{
+    width:600px;
+    display: flex;
+    justify-content: space-between;
+    text-decoration: none;
+}
+#headernavBar>div{
+    padding-top: 50px;
+}
+.head-nav{
+    font-weight: bold;
+    color: black;
+    text-decoration: none;
+}
+.head-nav:hover{
+    color: dodgerblue;
+}
+#headerLogIn{
+      width: 160px;
+      display: flex;
+      justify-content: space-between;
+}
+#headerLogIn>div{
+    padding-top:50px;
+}
+.headerLogIn{
+    font-weight: bold;
+    color: black;
+    padding-top:5px;
+    text-decoration: none;
+}
+.headerLogIn:hover{
+    color: dodgerblue;
+}
+#getStarted{
+    width: 100px;
+    height: 40px;
+    margin-top:40px;
+    background-color:dodgerblue;
+    text-align: center;
+    border-radius: 5px;
+    text-decoration: none;
+}
+#getStarted>p{
+    margin-top: 8px;
+    color: white;
+}
+.headNavHidden{
+    font-weight:bold;
+    font-size: 15px;
+    text-decoration: none;
+    color: black;
+}
+.headNavHidden:hover{
+    color: dodgerblue;
+}
+#headNavHidden>div{
+    margin-top: 20px;
+    padding-left:20px;
+}
+#headNavHidden
+{
+    margin-top: 20px;
+    margin-left:-70px;
+    width: 200px;
+    height: 300px;
+    position: absolute;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow:2px 2px 10px grey;
+    display:none;
+}
+#solutionHidden:hover #headNavHidden{
+    display: block;
+}
+.brand{
+    width: 210px;
+    height:60px;
+    margin-left:30px;
+}

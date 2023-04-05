@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Feature in Development</title>
+  <style>
+      body {
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #fff;
+      }
+      .animation {
+        width: 250px;
+        height: 250px;
+        position: relative;
+      }
+      .animation .circle {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        animation: pulse 2s ease-out infinite;
+        background-color: #005dff;
+      }
+      .animation .pulse-1 {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        animation: pulse 2s ease-out infinite;
+        opacity: 0.5;
+        background-color: #005dff;
+      }
+      .animation .pulse-2 {
+        width: 250px;
+        height: 250px;
+        border-radius: 50%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        animation: pulse 2s ease-out infinite;
+        opacity: 0.2;
+        background-color: #005dff;
+      }
+      @keyframes pulse {
+        0% {
+          transform: scale(0.5);
+          opacity: 0.5;
+        }
+        100% {
+          transform: scale(1);
+          opacity: 0;
+        }
+      }
+      .message {
+        text-align: center;
+        margin-top: 20px;
+        font-size: 24px;
+        font-weight: bold;
+        color: #005dff;
+      }
+    </style>
+</head>
+<body>
+<div class="animation">
+  <div class="circle"></div>
+  <div class="pulse-1"></div>
+  <div class="pulse-2"></div>
+</div>
+<div class="message">We are working on this feature. We will let you know once it's completed.</div>
+</body>
+</html>

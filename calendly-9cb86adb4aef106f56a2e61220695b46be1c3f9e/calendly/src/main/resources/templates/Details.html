@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+  body{
+  display:flex;
+  margin-left:600px}
+    #container{
+    margin-left:400px;
+    margin-top:100px;
+    }
+  </style>
+</head>
+<body>
+<p style="width:200px
+;font-size:40px;font-weight:bold;color:dodgerblue;margin-top:150px;margin-left:-150px" th:text="${name}">  </p>
+<div id="container">
+    <label style="font-size:30px">Email</label></br>
+    <p style="font-size:30px;font-weight:bold;color:dodgerblue" th:text="${email}"></p></br>
+
+    <th:block th:each="event : ${event}">
+
+        <p style="margin-top:50px;font-size:30px">LOCATION</p></br>
+        <p style="font-size:30px;color:dodgerblue" th:text="${event.location}"></p></br>
+
+        <p style="margin-top:20px;font-size:30px">INVITEE TIME ZONE</p></br>
+        <p style="font-size:30px;color:dodgerblue" th:text="${timeZone}"></p></br>
+
+
+        <lable style="font-size:30px;margin-top:100px" >Created on :  </lable><p style="font-size:30px;color:dodgerblue" th:text="${date}"></p>
+
+        <div style="width:150px;height:50px;border:1px solid black;border-radius:20px;margin-left:-700px;margin-top:-400px">
+            <a th:href="@{/reschedule/{eventId}/{bookingId}(eventId=${event.id},bookingId=${id})}" style="text-decoration:none;color:black"><p style="margin-left:2px;font-size:25px;margin-top:8px">Reschedule</p></a></div>
+        <div style="width:150px;height:50px;border:1px solid black;border-radius:20px;margin-top:30px;;margin-left:-700px">
+            <a  th:href="@{/currentDelete/{id}(id=${id})}" style="text-decoration:none;color:black"><p  style="margin-left:25px;font-size:30px;margin-top:7px">Cancel</p></a></div>
+
+    </th:block>
+
+</div>
+<div style="margin-top:700px;margin-left:-800px;font-size:40px"><a style="text-decoration:none;color:black" th:href="@{'/'+${value}}">BACK</a></div>
+</body>
+</html>

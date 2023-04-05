@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login with google</title>
+</head>
+<body>
+    <div><center><a style="text-decoration: none;"
+                    th:href="@{/oauth2/authorization/google}" ><img style="margin-top:60px;" width="35px" src="https://assets.calendly.com/assets/frontend/media/logo-square-cd364a3c33976d32792a.png" />
+        <span style="font-size: 30px;color: dodgerblue;font-weight: bold;font-family: sans-serif;">Calendly</span></a></center></div>
+
+
+    <div style="width:450px;height:250px;margin-left:40%;margin-top:6%;border-radius: 10px;box-shadow:0px 2px 9px gray;">
+    <div style="width:260px;height: 50px;background-color: dodgerblue;border-radius:40px;margin-left:130px;
+               position: absolute;margin-top:70px;">
+        <a style="color: white;font-weight: bold;text-decoration: none;margin-top:100px;"  th:href="@{/oauth2/authorization/google}">
+        <img style="margin-left: 20px;margin-top: 15px;" src="//assets.calendly.com/assets/authentication/media/google-a1417560f643c2131124.svg">
+        <p style="margin-top:-20px;margin-left:50px;">Log In With Google</p></a>
+    </div>
+    <p style="margin-top: 150px;position: absolute;margin-top:145px;margin-left:127px;">Don't have an account? 
+        <a style="text-decoration: none;color: dodgerblue;" th:href="@{/oauth2/authorization/google}">Sign up.</a></p>
+    </div>
+</body>
+</html>

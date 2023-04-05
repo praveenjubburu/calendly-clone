@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security/">
+<head>
+    <title>Calendly</title>
+    <link rel="stylesheet" href="eventType.css">
+    <style>
+       header{
+    margin-left:400px;
+}
+#headNav{
+    padding-top: 40px;
+}
+.headNav{
+    text-decoration: none;
+    color: black;
+}
+#homeHidden{
+    position:absolute;
+    background-color: white;
+    width: 140px;
+    display: none;
+    height: 140px;
+    margin-top:20px;
+    margin-left:-40px;
+    box-shadow: 2px 2px 10px gray;
+    border-radius: 10px;
+}
+#viewHidden{
+    height:60px;
+}
+#homeHidden>div{
+    margin-top: 15px;
+}
+.homeHidden:hover{
+    color: dodgerblue;
+}
+.homeHidden{
+    margin-left: 10px;
+    text-decoration: none;
+    color: black;
+    opacity: 70%;
+}
+#viewHidden:hover #homeHidden{
+    display: block;
+}
+.userHidden:hover{
+color: dodgerblue;
+opacity: 70%;
+}
+.userHidden{
+    text-decoration: none;
+    opacity: 70%;
+    color:black;
+    padding-left: 15px;
+}
+#userHidden>div{
+    margin-top: 17px;
+}
+#userHidden{
+    position: absolute;
+    background-color: white;
+    display: none;
+    width:200px;
+    height: 310px;
+    margin-top: 20px;
+    margin-left: -70px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 10px gray;
+}
+#ViewUserHidden:hover #userHidden{
+    display: block;
+}
+.bodyNav{
+    text-decoration: none;
+    color:black;
+    font-weight: bold;
+    opacity: 50%;
+}
+.bodyNav:hover{
+    color: dodgerblue;
+    opacity: 100%;
+}
+#nav>div{
+    height:60px;
+}
+.events{
+background:tan;
+}
+        .event-container{
+           width:70%;
+           margin:auto auto;
+           border:2px solid dodgerblue;
+           }
+           body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+.event-container {
+  margin: 50px auto;
+  width: 80%;
+  max-width: 1200px;
+  background-color:white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px dodgerblue;
+}
+
+form {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 20px;
+}
+
+input[type="text"],
+input[type="date"],
+input[type="number"],
+select,
+textarea {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  background-color: #f8f8f8;
+  border-radius: 5px;
+  box-shadow: 0 0 5px dodgerblue;
+  font-size: 16px;
+}
+
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+input[type="submit"] {
+  padding: 10px 20px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+p {
+  margin: 0;
+  font-weight: bold;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+textarea {
+  resize: none;
+  height: 150px;
+}
+
+@media only screen and (max-width: 768px) {
+  form {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .event-container {
+    padding: 20px;
+  }
+  input[type="text"],
+  input[type="date"],
+  input[type="number"],
+  select,
+  textarea {
+    font-size: 14px;
+  }
+  input[type="submit"] {
+    font-size: 14px;
+  }
+}
+    </style>
+</head>
+<body>
+<header>
+    <div style="display: flex;justify-content: space-between;width:1000px;background-color: white;">
+        <div style="padding-top:10px;"><a href="/dashboard"><img style="width:40px" src="https://assets.calendly.com/assets/frontend/media/logo-square-cd364a3c33976d32792a.png"></a></div>
+
+
+        <div id="headNav"style="display: flex;justify-content: space-between;width:400px;">
+            <div><a style="font-weight: bold;"class="headNav" href="/dashboard">Home</a></div>
+            <div><a class="headNav"th:href="@{/schedule}">Availability</a></div>
+            <div><a class="headNav"href="">Integrations</a></div>
+            <div id="viewHidden"><a>Help</a>
+                <div id="homeHidden" >
+                    <div><a class="homeHidden"href="">Get started</a></div>
+                    <div><a class="homeHidden"href="">Help center</a></div>
+                    <div><a class="homeHidden"href="">Chat with us</a></div>
+                    <div><a class="homeHidden"href="">Give feedback</a></div>
+                </div>
+            </div>
+            <div id="ViewUserHidden"><a>User</a>
+                <div id="userHidden">
+                    <div style="padding-top:5px;"><a class="userHidden" th:href="@{/accountSettings}">Account Settings</a></div>
+                    <div><a class="userHidden" href="">Billing</a></div>
+                    <div><a class="userHidden" href="">Calendar Connections</a></div>
+                    <div><a class="userHidden" href="/organization">Admin Management</a></div>
+                    <div><a class="userHidden" href="">Organization Settings</a></div>
+                    <div><a class="userHidden" href="">Share your Link</a></div>
+                    <div><a class="userHidden" href="">Apps</a></div>
+                    <div style="padding-top:10px;border-top: 1px solid gray;"><a class="userHidden" hth:href="@{/logout}">Log Out</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<div style="box-shadow: 0px 2px 10px -2px gray;">
+    <div style="display:flex;width:900px;margin-left:400px;justify-content: space-between;" >
+        <form th:action="@{/dashboard}">
+            <input style="width:100px; height:40px;background-color:dodgerblue;color:white;font-weight:bold;font-size:25px" type="submit" value="Back">
+        </form>
+        <div class="title">
+            <h1>Add Collective Event Type</h1>
+        </div>
+        <div style="width:80px;height:40px;font-weight: bold;border-radius:30px;background-color: dodgerblue;margin-top:40px;"><a style="text-decoration: none;"href=""><p style="color:white;text-align: center;">+Create</p></a></div>
+    </div>
+</div>
+<div class="event-container">
+    <form action="#" th:action="@{/saveEvent}" method="post" th:object="${event}">
+        <div class="input-container">
+            <label for="eventName">Event Name</label>
+            <input type="hidden" name="eventType" value="Collective"/>
+            <input type="hidden" th:value="${eventId}" th:field="*{id}">
+            <input type="text" id="eventName" name="eventName" th:field="*{eventName}">
+        </div>
+        <div class="input-container">
+            <label for="location">Location</label>
+            <select id="location" name="location" th:field="*{location}">
+                <option value="zoom">Zoom</option>
+                <option value="microsoftteam">Microsoft Team</option>
+                <option value="inpersonmeeting">In Person Meeting</option>
+                <option value="phonecall">Phone Call</option>
+                <option value="webex">Webex</option>
+                <option value="custom">Custom</option>
+                <option value="askinvite">Ask Invite</option>
+            </select>
+        </div>
+        <div th:each="element : ${hosts}">
+            <h2 th:text="${element.key}"></h2>
+            <select id="schedule" name="schedule" required>
+                <option th:each="schedule : ${element.value}"
+                        th:value="${schedule.id}"
+                        th:text="${schedule.name}"></option>
+            </select>
+        </div>
+        <div class="input-container">
+            <label for="description">Description</label>
+            <textarea id="description" name="description" th:field="*{description}" required></textarea>
+        </div>
+        <div class="input-container">
+            <label for="eventLink">Event Link</label>
+            <input type="text" id="eventLink" name="eventLink" th:field="*{eventLink}" required>
+        </div>
+        <div class="input-container">
+            <label for="eventColor">Event Color</label>
+            <input type="text" id="eventColor" name="eventColor" th:field="*{eventColor}" required>
+        </div>
+        <div class="input-container">
+            <label for="from">From Date</label>
+            <input type="date" id="from" name="from" required/>
+        </div>
+        <div class="input-container">
+            <label for="to">To Date</label>
+            <input type="date" id="to" name="to" required/>
+        </div>
+        <div class="input-container">
+            <label for="duration">Event Duration</label>
+            <input type="number" id="duration" name="duration" th:field="*{duration}" required>
+        </div>
+        <div class="input-container">
+            <label for="bufferBeforeEvent">Buffer Before Event</label>
+            <input type="number" id="bufferBeforeEvent" name="bufferBeforeEvent" th:field="*{bufferBeforeEvent}">
+        </div>
+        <div class="input-container">
+            <label for="bufferAfterEvent">Buffer After Event</label>
+            <input type="number" id="bufferAfterEvent" name="bufferAfterEvent" th:field="*{bufferAfterEvent}">
+        </div>
+        <input style=" background-color:dodgerblue;color:white;" type="submit" value="submit">
+    </form>
+</div>
+</div>
+</body>
+</html>
